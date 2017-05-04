@@ -1,0 +1,25 @@
+<div class="ui container">
+  <h1 *ngIf="sedentaryUsers.length" class="ui center aligned header" style="margin: 50px auto;">
+    Sedentary patients list
+    <div class="sub header">Patients shown below should fix their activity.</div>
+  </h1>
+  <table *ngIf="sedentaryUsers.length" class="ui selectable very basic big table">
+    <thead>
+      <tr>
+        <th class="collapsing">Photo</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Birthday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="select(patient)" style="cursor: pointer" *ngFor="let patient of sedentaryUsers">
+        <td><img class="ui tiny image" [src]="patient.profile._json.user.avatar150"/></td>
+        <td>{{patient.name}}</td>
+        <td>{{patient.profile._json.user.age}}</td>
+        <td>{{patient.profile._json.user.dateOfBirth}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 *ngIf="!sedentaryUsers.length" style="margin-top: 100px;" class="ui center aligned header"><i class="info icon"></i> Here is no sedentary patients</h2>
+</div>

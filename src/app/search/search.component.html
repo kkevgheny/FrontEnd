@@ -1,0 +1,47 @@
+<div class="ui center aligned grid container">
+  <div class="row">
+    <div class="twelve wide column">
+      <div class="ui segments">
+        <div class="ui basic segment">
+          <h2 class="ui header">Search</h2>
+        </div>
+        <div class="ui left aligned form segment">
+          <div class="field">
+            <label>Name</label>
+            <div class="ui massive left icon input">
+              <input #name (keyup)="search(name.value)" type="text" autofocus placeholder="John Doe"/>
+              <i class="user icon"></i>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isSearching" class="ui segment" style="min-height: 150px;">
+          <div class="ui active big text loader">Loading</div>
+        </div>
+        <div *ngIf="notFound" class="ui segment">
+          <h3 class="ui header">Not found. System has nothing about this patient :(</h3>
+          <p>Seems like patient has not been authorized <a href="http://fitness-watcher.webify.tech/landing" target="_blank"> here.</a></p>
+        </div>
+        <div *ngIf="searchResults.length" class="ui segment">
+          <table class="ui selectable very basic big table">
+            <thead>
+              <tr>
+                <th class="collapsing">Photo</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Birthday</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr (click)="select(patient)" style="cursor: pointer" *ngFor="let patient of searchResults">
+                <td><img class="ui tiny image" [src]="patient.profile._json.user.avatar150"/></td>
+                <td>{{patient.name}}</td>
+                <td>{{patient.profile._json.user.age}}</td>
+                <td>{{patient.profile._json.user.dateOfBirth}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

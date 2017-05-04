@@ -1,0 +1,125 @@
+<div class="ui center aligned grid container">
+  <div class="row" style="margin-top: 20px">
+    <div class="eight wide column">
+      <h2 class="ui header"><i class="settings icon"></i> Settings</h2>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 50px;">
+    <div class="eight wide left aligned column">
+      <h3 class="ui dividing header">CRON Fetch & Importing History
+        <div class="sub header">Customize period</div>
+      </h3>
+      <div class="ui basic form">
+        <div class="field">
+        <label>Importing History(3months recommended)</label>
+        <select id="p" name="period" [(ngModel)]="period" class="ui selection dropdown">
+          <option value="1d">1 day</option>
+          <option value="7d">7 days</option>
+          <option value="1m">1 month</option>
+          <option value="3m">3 months</option>
+        </select>
+        </div>
+        <div class="field">
+        <label>CRON daily fething period(7days recommended)</label>
+        <select id="crP" name="cron_period" [(ngModel)]="cron_period" class="ui selection dropdown">
+          <option value="1d">1 day</option>
+          <option value="7d">7 days</option>
+          <option value="1m">1 month</option>
+          <option value="3m">3 months</option>
+        </select>
+        </div>
+      </div>
+      <button style="margin-top: 30px" id="period" (click)="updatePeriod()" class="ui left teal labeled icon button right floated">
+        <i class="save icon"></i>Save
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="eight wide left aligned column">
+      <h3 class="ui dividing header">CRON
+        <div class="sub header">Configure CRON timing</div>
+      </h3>
+      <p>For safety/stability purpose, CRON management is disabled.</p>
+      <div style="margin: 30px 0">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" checked="checked" disabled>
+          <label>Refreshing tokens CRON</label>
+        </div>
+      </div>
+      <div style="margin: 30px 0">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" checked="checked" disabled>
+          <label>FitBit Synchronization CRON</label>
+        </div>
+      </div>
+      <div class="ui basic form">
+        <div class="two fields">
+          <div class="field">
+            <label>CRON scheduler string</label>
+            <div class="ui left icon input">
+              <i class="hashtag icon"></i>
+              <input type="text" placeholder="* */2 * * *" name="CRON"/>
+            </div>
+          </div>
+          <div class="field">
+            <label>Root access key</label>
+            <div class="ui left icon input">
+              <i class="red warning icon"></i>
+              <input type="text" name="access" placeholder="Contact dev to get root access." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>More info about how to schedule CRON read <a href="https://crontab.guru/" target="_blank">here</a>.</p>
+      <button class="ui disabled left teal labeled icon button right floated">
+        <i class="save icon"></i>Save
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="eight wide left aligned column">
+      <h3 class="ui dividing header">Tresholds
+        <div class="sub header">Set patient's activity <i>average</i> treshold</div>
+      </h3>
+      <div class="ui basic form">
+        <div class="field">
+          <label>Steps min.</label>
+          <input name="steps" [(ngModel)]="steps" type="number"/>
+        </div>
+        <div class="field">
+          <label>Calories min.</label>
+          <input name="calories" [(ngModel)]="calories" type="number"/>
+        </div>
+        <div class="field">
+          <label>Distance(meters) min.</label>
+          <input name="distance" [(ngModel)]="distance" type="number"/>
+        </div>
+        <div class="field">
+          <label>Resting heart rate min.</label>
+          <input name="heartmin" [(ngModel)]="hmin" type="number"/>
+        </div>
+        <div class="field">
+          <label>Resting heart rate max.</label>
+          <input name="heartmax" [(ngModel)]="hmax" type="number"/>
+        </div>
+        <button (click)="updateLimits()" id="limits" class="ui left teal labeled icon button right floated">
+          <i class="save icon"></i>Save
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 50px;">
+    <div class="eight wide left aligned column">
+      <h3 class="ui dividing header">Staff accounts
+        <div class="sub header">Add, remove staff accounts</div>
+      </h3>
+      <div class="ui basic form">
+
+      </div>
+      <p>More info about Google Firebase Authorization read <a href="https://firebase.google.com/" target="_blank">here</a>.</p>
+      <!--<button class="ui left teal labeled icon button right floated">
+        <i class="save icon"></i>Save
+      </button> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="ui center aligned grid container">
+  <div class="row" style="margin-top: 100px;">
+    <div class="six wide column">
+      <h2 class="ui header">Authorize</h2>
+      <div [ngClass]="{'error': err}" class="ui basic segment form">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="mail icon"></i>
+            <input [(ngModel)]="email" type="email" name="email" placeholder="john@doe"/>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input [(ngModel)]="password" type="password" name="pass"/>
+          </div>
+        </div>
+        <div class="ui error message">
+          <div class="header">Error! Action Forbidden.</div>
+          <p>{{errorMsg}}</p>
+        </div>
+        <div class="field">
+          <div (click)="login()" class="ui fluid basic button">Login</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

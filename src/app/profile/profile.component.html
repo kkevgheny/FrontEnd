@@ -1,0 +1,133 @@
+<div class="ui center aligned grid">
+  <div class="row">
+    <div class="twelve wide column">
+      <div class="ui segments" style="margin-bottom: 50px">
+        <div class="ui segment" style="padding: 0">
+          <div class="ui borderless attached inverted green menu">
+            <div class="header item">Profile</div>
+            <div class="right menu">
+              <a (click)="importHistory()" class="item">
+                <i [ngClass]="{'loading':isImporting}" class="refresh icon"></i>
+                <span *ngIf="isImporting">Fetching...</span>
+              </a>
+              <a (click)="openModal()" class="item"><i class="edit icon"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="ui grid">
+            <div class="left aligned row">
+              <div class="three wide column">
+                <img class="ui image" [src]="patient.profile._json.user.avatar150" />
+              </div>
+              <div class="seven wide column">
+                <div class="ui big list">
+                  <div class="item">
+                    {{patient.name}}
+                  </div>
+                  <div class="item">
+                    {{patient.profile._json.user.age}} years old
+                  </div>
+                  <div class="item">
+                    {{patient.profile._json.user.dateOfBirth}}
+                  </div>
+                </div>
+              </div>
+              <div class="six wide column">
+                <div class="ui big list">
+                  <div *ngIf="phone" class="item">
+                    <i class="phone icon"></i> {{phone}}
+                  </div>
+                  <div *ngIf="email" class="item">
+                    <i class="mail icon"></i> {{email}}
+                  </div>
+                </div>
+                <button style="margin-bottom: 10px;" id="generatebtn" (click)="generateExcel()" class="ui green fluid button"><i class="download icon"></i>Generate report</button>
+                <a [href]="fileURL" target="_blank" class="ui teal fluid button" *ngIf="fileGenerated"><i class="file excel outline icon"></i>Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui segment">
+          <div class="ui grid">
+            <div class="middle aligned row">
+              <div class="six wide column">
+                <h5 class="ui header">Choose period</h5>
+              </div>
+              <div class="five wide column">
+                <div class="ui calendar" id="dateRangeStart">
+                  <div class="ui input left icon"><div class="ui popup calendar bottom left transition hidden" style="top: 37px; left: 0px; bottom: auto; right: auto;"><table class="ui celled center aligned unstackable table seven column day"><thead><tr><th colspan="7"><span class="link">May 2017</span><span class="prev link"><i class="chevron left icon"></i></span><span class="next link"><i class="chevron right icon"></i></span></th></tr><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="link disabled">30</td><td class="link today">1</td><td class="link active focus">2</td><td class="link">3</td><td class="link">4</td><td class="link">5</td><td class="link">6</td></tr><tr><td class="link">7</td><td class="link">8</td><td class="link">9</td><td class="link">10</td><td class="link">11</td><td class="link">12</td><td class="link">13</td></tr><tr><td class="link">14</td><td class="link">15</td><td class="link">16</td><td class="link">17</td><td class="link">18</td><td class="link">19</td><td class="link">20</td></tr><tr><td class="link">21</td><td class="link">22</td><td class="link">23</td><td class="link">24</td><td class="link">25</td><td class="link">26</td><td class="link">27</td></tr><tr><td class="link">28</td><td class="link">29</td><td class="link">30</td><td class="link">31</td><td class="link disabled">1</td><td class="link disabled">2</td><td class="link disabled">3</td></tr><tr><td class="link disabled">4</td><td class="link disabled">5</td><td class="link disabled">6</td><td class="link disabled">7</td><td class="link disabled">8</td><td class="link disabled">9</td><td class="link disabled">10</td></tr></tbody></table></div>
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Start" class="">
+                  </div>
+                </div>
+              </div>
+              <div class="five wide column">
+                <div class="ui calendar" id="dateRangeEnd">
+                  <div class="ui input left icon"><div class="ui popup calendar bottom left transition hidden" style="top: 37px; left: 0px; bottom: auto; right: auto;"><table class="ui celled center aligned unstackable table seven column day"><thead><tr><th colspan="7"><span class="link">May 2017</span><span class="prev link"><i class="chevron left icon"></i></span><span class="next link"><i class="chevron right icon"></i></span></th></tr><tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr></thead><tbody><tr><td class="link disabled">30</td><td class="link today">1</td><td class="link active focus">2</td><td class="link">3</td><td class="link">4</td><td class="link">5</td><td class="link">6</td></tr><tr><td class="link">7</td><td class="link">8</td><td class="link">9</td><td class="link">10</td><td class="link">11</td><td class="link">12</td><td class="link">13</td></tr><tr><td class="link">14</td><td class="link">15</td><td class="link">16</td><td class="link">17</td><td class="link">18</td><td class="link">19</td><td class="link">20</td></tr><tr><td class="link">21</td><td class="link">22</td><td class="link">23</td><td class="link">24</td><td class="link">25</td><td class="link">26</td><td class="link">27</td></tr><tr><td class="link">28</td><td class="link">29</td><td class="link">30</td><td class="link">31</td><td class="link disabled">1</td><td class="link disabled">2</td><td class="link disabled">3</td></tr><tr><td class="link disabled">4</td><td class="link disabled">5</td><td class="link disabled">6</td><td class="link disabled">7</td><td class="link disabled">8</td><td class="link disabled">9</td><td class="link disabled">10</td></tr></tbody></table></div>
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="End" class="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class="ui very basic celled table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Steps</th>
+                <th>Calories</th>
+                <th>Resting heart</th>
+                <th>Distance(meters)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of patientData">
+                <td>{{data.day.updatedAt}}</td>
+                <td [ngClass]="{'error': data.err.steps}">{{data.day.steps}}</td>
+                <td [ngClass]="{'error': data.err.calories}">{{data.day.calories}}</td>
+                <td [ngClass]="{'error': data.err.heart}">{{data.day.heart}}</td>
+                <td [ngClass]="{'error': data.err.distance}">{{data.day.distance * 1000 | number: '1.2-2'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui mini modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit profile
+  </div>
+  <div class="ui form basic segment">
+    <div class="two fields">
+      <div class="field">
+        <label>Phone</label>
+        <div class="ui left icon input">
+          <input type="text" name="phone" [(ngModel)]="formToUpdate.phone"/>
+          <i class="phone icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <div class="ui left icon input">
+          <input type="email" name="mail" [(ngModel)]="formToUpdate.email"/>
+          <i class="mail icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Notes, operations</label>
+      <textarea name="operations" [(ngModel)]="formToUpdate.operations"></textarea>
+    </div>
+  </div>
+  <div class="actions">
+    <div (click)="cancelUpd()" class="ui button">Cancel</div>
+    <div id="saveBtn" (click)="updateProfile()" class="ui button">OK</div>
+  </div>
+</div>

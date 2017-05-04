@@ -1,0 +1,40 @@
+<div id="app">
+  <section id="main">
+    <nav class="ui borderless attached menu">
+      <div class="ui container">
+        <div class="item" style="padding: 0">
+          <img class="ui image" src="assets/logo-clinic.png"
+            style="height: 60px; width: 100px;"
+          />
+        </div>
+        <div class="header item">Fitness Watcher</div>
+        <a *ngIf="user" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="item">Home</a>
+        <a *ngIf="user" routerLink="search" routerLinkActive="active" class="item">Search</a>
+        <a *ngIf="user" routerLink="settings" routerLinkActive="active" class="item">Settings</a>
+        <div class="right menu">
+          <div *ngIf="user" class="ui simple dropdown item">
+            {{user.auth.email}}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a (click)="logout()" class="item">Sign out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section id="content">
+      <router-outlet></router-outlet>
+    </section>
+    <footer>
+      <div class="ui borderless attached menu">
+        <div class="ui container">
+          <div class="header item">Copyright FitnessWatcher</div>
+          <div class="right menu">
+            <div class="item">2017</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <aside id="sidebar"></aside>
+</div>

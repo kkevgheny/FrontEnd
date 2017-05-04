@@ -1,0 +1,45 @@
+<div class="ui container">
+  <h1 class="ui center aligned header" style="margin: 50px auto;">
+    Welcome to Fitness Watcher dashboard
+    <div class="sub header">Browse patients, watch progress, get notified.</div>
+  </h1>
+  <div class="row">
+    <div class="ui three statistics">
+      <div class="statistic">
+        <div class="value">{{usersCount}}</div>
+        <div class="label">Patients</div>
+      </div>
+      <a routerLink="sedentary" class="statistic">
+        <div class="value">{{sedentaryUsers.length}}</div>
+        <div class="label">Sedentary patients</div>
+      </a>
+      <a routerLink="errors" class="statistic">
+        <div class="value">{{errors.length}}</div>
+        <div class="label">Errors</div>
+      </a>
+    </div>
+  </div>
+  <div class="ui center aligned grid container">
+    <div class="row" style="margin: 50px auto;">
+      <div class="six wide column">
+        <a style="margin-bottom: 15px" routerLink="search" class="ui left labeled green big fluid icon button">
+          <i class="search icon"></i>Search for patients
+        </a>
+        <a routerLink="settings" class="ui left labeled teal big fluid icon button">
+          <i class="settings icon"></i>Configure CRON
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui center aligned grid container">
+  <div class="row">
+    <h2 class="ui header">What is CRON?</h2>
+    <p style="padding: 0 150px; font-size: 18px; margin-bottom: 100px;">The software utility Cron is a time-based job scheduler in Unix-like computer operating systems.
+       People who set up and maintain software environments use cron to schedule jobs (commands or shell scripts) 
+       to run periodically at fixed times, dates, or intervals. It typically automates system maintenance or 
+       administration—though its general-purpose nature makes it useful for things like downloading files from the 
+       Internet and downloading email at regular intervals.
+    </p>
+  </div>
+</div>
